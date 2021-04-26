@@ -34,7 +34,7 @@ class SpiceSchema(ma.Schema):
 spice_schema = SpiceSchema()
 spices_schema = SpiceSchema(many=True)
 
-# please work gods help me
+# please work
 @app.route('/')
 def hello():
     return "please work"
@@ -73,7 +73,7 @@ def get_spice(id):
     return spice_schema.jsonify(spice)
 
 
-# update spice with put not patch...? # nevermind that's hard
+# update spice with put not patch...? # I need better comprehension of how incoming requests interact with my api first
 @app.route('/spice/<id>', methods=['PUT'])
 def replace_spice(id):
     spice = Spice.query.get(id)
@@ -94,11 +94,11 @@ def replace_spice(id):
 # deleting a spice
 @app.route('/spice/<id>', methods=['DELETE'])
 def spice_deletion(id):
-    spice =Spice.query.get(id)
+    spice = Spice.query.get(id)
     db.session.delete(spice)
     db.session.commit()
 
-    return f"The {spice} entry was deleted."
+    return "The spice entry was deleted."
 
 
 if __name__ == '__main__':
